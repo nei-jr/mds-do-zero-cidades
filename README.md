@@ -4,7 +4,7 @@ Se eu tiver só a tabela de distâncias entre 14 cidades, sem nenhuma coordenada
 
 Neste notebook implemento o MDS clássico (Multidimensional Scaling) em PyTorch, sem usar `sklearn.manifold.MDS`, e testo isso com cidades de SP, PR, SC, RJ, MG, MS e DF. As coordenadas reais servem só para calcular as distâncias e conferir o resultado no final.
 
-![Mapa real e mapa reconstruído pelo MDS](img/mapa_real_vs_mds.png)
+![Mapa real e mapa reconstruído pelo MDS](mapa_real_vs_mds.png)
 
 ## O que tem no notebook
 
@@ -15,7 +15,7 @@ Neste notebook implemento o MDS clássico (Multidimensional Scaling) em PyTorch,
 5. Leitura dos autovalores de $B$, onde aparece a curvatura da Terra.
 6. Comparação entre arco e corda.
 
-![MDS alinhado sobre o mapa real](img/mds_alinhado.png)
+![MDS alinhado sobre o mapa real](mds_alinhado.png)
 
 ## A parte que eu achei mais interessante
 
@@ -27,7 +27,7 @@ Se as cidades estivessem num plano, $B$ teria exatamente 2 autovalores positivos
 
 Para testar essa explicação, troquei o arco pela corda (a linha reta que atravessa a Terra), que é uma distância euclidiana de verdade:
 
-![Espectro de B com arco e com corda](img/espectro_arco_vs_corda.png)
+![Espectro de B com arco e com corda](espectro_arco_vs_corda.png)
 
 | | Arco (haversine) | Corda |
 |---|---|---|
@@ -40,7 +40,7 @@ Com a corda, os negativos somem e $B$ fica com posto exatamente 3: só pela tabe
 
 Arco e corda diferem em no máximo 2,3 km nesta tabela. Essa diferença de 0,2% já basta para a matriz deixar de ser euclidiana, e o espectro mostra isso.
 
-Para separar o que é zero de verdade do que é ruído de arredondamento, usei a tolerância $N\,\varepsilon\,|\lambda_1|$, o mesmo critério do `numpy.linalg.matrix_rank`.
+Para separar o que é zero de verdade do que é ruído de arredondamento, usei a tolerância $N \varepsilon \lvert\lambda_1\rvert$, o mesmo critério do `numpy.linalg.matrix_rank`.
 
 ## Como rodar
 
